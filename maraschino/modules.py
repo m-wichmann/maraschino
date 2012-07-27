@@ -210,6 +210,43 @@ AVAILABLE_MODULES = [
         ]
     },
     {
+        'name': 'pic_frame',
+        'label': 'Picture Frame',
+        'description': 'Picture Frame.',
+        'static': False,
+        'poll': 350,
+        'delay': 0,
+        'settings': [
+            {
+                'key': 'pic_frame_img_path',
+                'value': '',
+                'description': 'Image Path',
+            },
+            {
+                'key': 'pic_frame_display_title',
+                'value': '1',
+                'description': 'Display a picture title?',
+                'type': 'bool',
+            },
+            {
+                'key': 'pic_frame_img_title',
+                'value': '',
+                'description': 'Image Title',
+            },
+            {
+                'key': 'pic_frame_auto_width',
+                'value': '0',
+                'description': 'Try to calculate the image width.',
+                'type': 'bool',
+            },
+            {
+                'key': 'pic_frame_img_width',
+                'value': '',
+                'description': 'Image Width',
+            },
+        ]
+    },
+    {
         'name': 'nzbget',
         'label': 'NZBGet',
         'description': 'Shows you information about your NZBGet downloads.',

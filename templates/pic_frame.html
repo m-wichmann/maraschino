@@ -1,0 +1,17 @@
+<div id="pic_frame" class="module" data-module="pic_frame">
+
+  <div class="module_settings"><span>Settings</span></div>
+  <div class="module_remove"><span>Remove</span></div>
+
+{% if pic_frame_display_title %}
+  <div class="pic_frame_header"><span>
+    {{ pic_frame_img_title }}
+  </span></div>
+{% endif %}
+
+  <div class="pic_frame_image"><span>
+    <img src="{{ pic_frame_img_path }}" width="{{ pic_frame_img_width }}">
+  </span></div>
+
+
+</div>
