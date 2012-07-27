@@ -27,6 +27,7 @@ app = Flask(__name__)
 
 def import_modules():
     import modules.applications
+    import modules.clock
     import modules.controls
     import modules.couchpotato
     import modules.currently_playing

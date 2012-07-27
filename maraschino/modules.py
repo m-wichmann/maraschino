@@ -40,6 +40,34 @@ AVAILABLE_MODULES = [
         ]
     },
     {
+        'name': 'clock',
+        'label': 'Clock',
+        'description': 'Just a clock.',
+        'static': False,
+        'poll': 350,
+        'delay': 0,
+        'settings': [
+            {
+                'key': 'clock_show_date',
+                'value': '1',
+                'description': 'Show date?',
+                'type': 'bool',
+            },
+            {
+                'key': 'clock_show_time',
+                'value': '1',
+                'description': 'Show time?',
+                'type': 'bool',
+            },
+            {
+                'key': 'clock_meridian',
+                'value': '0',
+                'description': '12 hour time?',
+                'type': 'bool',
+            },
+        ]
+    },
+    {
         'name': 'couchpotato',
         'label': 'CouchPotato Manager',
         'description': 'Manage CouchPotato from within Maraschino',

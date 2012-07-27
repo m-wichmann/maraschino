@@ -1757,6 +1757,43 @@ $(document).ready(function() {
 
   /********* END Trakt Plus *********/
 
+    /***** CLOCK Module *****/
+  setInterval( function() {
+    var seconds = new Date().getSeconds();
+    $('#clock .sec').text(( seconds < 10 ? '0' : '' ) + seconds);
+  }, 1000);
+
+  setInterval( function() {
+    var minutes = new Date().getMinutes();
+    $('#clock .min').text(( minutes < 10 ? '0' : '' ) + minutes);
+  }, 1000);
+
+  //24 hour time
+  setInterval( function() {
+    var hours = new Date().getHours();
+    $('#clock .hours').text(( hours < 10 ? '0' : '' ) + hours);
+  }, 1000);
+
+  //12 hour time
+  setInterval( function() {
+    var hours = new Date().getHours();
+    var meridian = 'AM';
+
+    if (hours >= 12) {
+      hours = hours -12;
+      meridian = 'PM';
+    }
+
+    if (hours === 0) {
+      hours = 12;
+    }
+
+    $('#clock .12hours').text(( hours < 10 ? '0' : '' ) + hours);
+    $('#clock .meridian').text(meridian);
+  }, 1000);
+
+    /***** END CLOCK Module *****/
+
     /*****WEATHER CLOCK*****/
   setInterval( function() {
     var seconds = new Date().getSeconds();
