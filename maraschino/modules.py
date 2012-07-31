@@ -371,6 +371,21 @@ AVAILABLE_MODULES = [
         ]
     },
     {
+        'name': 'rss_reader',
+        'label': 'RSS Feed Reader',
+        'description': 'Display your recent feeds in Maraschino.',
+        'static': False,
+        'poll': 350,
+        'delay': 0,
+        'settings': [
+            {
+                'key': 'feed_url',
+                'value': '',
+                'description': 'Feed URL',
+            }
+        ]
+    },
+    {
         'name': 'sabnzbd',
         'label': 'SABnzbd+',
         'description': 'Shows you information about your SABnzbd+ downloads.',

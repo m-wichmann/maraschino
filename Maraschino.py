@@ -40,6 +40,7 @@ def import_modules():
     import modules.pic_frame
     import modules.recently_added
     import modules.remote
+    import modules.rss_reader
     import modules.sabnzbd
     import modules.search
     import modules.sickbeard
