@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-"""This is the main executable of Maraschino. It takes of the command line pasing and after that starts the server."""
+"""This is the main executable of Maraschino. It parses the command line arguments, does init and calls the start function of Maraschino."""
 
 import sys
 import os
