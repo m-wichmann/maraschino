@@ -117,10 +117,18 @@ def main():
         maraschino.PIDFILE = options.pidfile
         maraschino.VERBOSE = False
 
+    # check if port argument is valid (integer between 0 and 65535)
+    # since the logger is not yet initialized the error state is stored in this variable
+    porterror = False
+    # default port:
+    PORT = 7000
     if options.port:
-        PORT = int(options.port)
-    else:
-        PORT = 7000
+        try:
+            PORT = int(options.port)
+            if PORT < 0 or PORT > 65535:
+                raise ValueError
+        except ValueError:
+            porterror = True
 
     if options.log:
         maraschino.LOG_FILE = options.log
@@ -153,6 +161,11 @@ def main():
     maraschino.DATABASE = DATABASE
 
     maraschino.initialize()
+
+    # check if defined port was valid. If not quit.
+    if porterror:
+        maraschino.logger.log('The specifed port is not valid. Please choose an integer between 0 and 65535.', 'CRITICAL')
+        quit()
 
     import_modules()
 
