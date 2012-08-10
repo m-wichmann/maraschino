@@ -382,6 +382,11 @@ AVAILABLE_MODULES = [
                 'key': 'feed_url',
                 'value': '',
                 'description': 'Feed URL',
+            },
+            {
+                'key': 'feed_fetch_interval',
+                'value': '5',
+                'description': 'Download Interval in min',
             }
         ]
     },

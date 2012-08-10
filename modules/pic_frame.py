@@ -8,7 +8,7 @@ from maraschino.tools import *
 import maraschino
  
 
-@app.route('/xhr/pic_frame')
+@app.route('/xhr/pic_frame/')
 @requires_auth
 def xhr_pic_frame():
 
