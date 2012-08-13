@@ -85,9 +85,7 @@ def xhr_rss_reader():
 
     if feed_url != None and feed_url != '':
         if download_feed == True:
-            print "downloading feed..."
             download_and_store_feed(feed_url)
-        print "loading cached feed..."
         feed = load_cached_feed(feed_url)
     else:
         logger.log('Please specify a valid rss feed address.', 'WARNING')
@@ -116,42 +114,6 @@ def xhr_rss_reader():
     except IOError:
         pass
 
-
-
-    feed_title0 = filtered_feeds[0]["title"]
-    feed_url0 = filtered_feeds[0]["link"]
-    feed_title1 = filtered_feeds[1]["title"]
-    feed_url1 = filtered_feeds[1]["link"]
-    feed_title2 = filtered_feeds[2]["title"]
-    feed_url2 = filtered_feeds[2]["link"]
-    feed_title3 = filtered_feeds[3]["title"]
-    feed_url3 = filtered_feeds[3]["link"]
-    feed_title4 = filtered_feeds[4]["title"]
-    feed_url4 = filtered_feeds[4]["link"]
-
     return render_template('rss_reader.html',
-        feed_title0 = feed_title0,
-        feed_url0 = feed_url0,
-        feed_title1 = feed_title1,
-        feed_url1 = feed_url1,
-        feed_title2 = feed_title2,
-        feed_url2 = feed_url2,
-        feed_title3 = feed_title3,
-        feed_url3 = feed_url3,
-        feed_title4 = feed_title4,
-        feed_url4 = feed_url4,
+        feeditems = filtered_feeds
     )
-
-
-
-
-
-
-
-
-
-
-
-
-
-
