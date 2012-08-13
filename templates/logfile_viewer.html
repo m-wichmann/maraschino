@@ -3,6 +3,10 @@
   <div class="module_settings"><span>Settings</span></div>
   <div class="module_remove"><span>Remove</span></div>
 
-  {{ logline }}
+  <div class="logfile_viewer_header"><span>{{ header }}</span></div>
+
+  {% for item in loglines %}
+      <div class="logfile_viewer_log_line"><span>{{ item }}</span></div>
+  {% endfor %}
 
 </div>

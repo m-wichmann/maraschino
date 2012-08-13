@@ -10,18 +10,23 @@ import maraschino
 @requires_auth
 def xhr_logfile_viewer():
 
-    logfile_path = get_setting_value('logfile_path')
+    logfile_path = get_setting_value('logfile_viewer_path')
+    count = int(get_setting_value('logfile_viewer_count'))
 
-    logline = ""
+    logfile_lines = []
 
     try:
         fd = open(logfile_path)
         for line in fd:
-            logline = line
-            break 
+            logfile_lines.append(line) 
     except:
         pass
 
+    loglines = logfile_lines[-count:]
+
+    header = "Logfile Viewer: " + str(logfile_path)
+
     return render_template('logfile_viewer.html',
-        logline = logline,
+        header = header,
+        loglines = loglines,
     )

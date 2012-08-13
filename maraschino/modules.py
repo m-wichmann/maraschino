@@ -218,9 +218,14 @@ AVAILABLE_MODULES = [
         'delay': 0,
         'settings': [
             {
-                'key': 'logfile_path',
+                'key': 'logfile_viewer_path',
                 'value': '',
                 'description': 'Path to logfile',
+            },
+            {
+                'key': 'logfile_viewer_count',
+                'value': '5',
+                'description': 'Shown line count',
             }
         ]
     },
