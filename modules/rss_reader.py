@@ -43,14 +43,18 @@ def load_cached_feed(feed_url):
 def download_and_store_feed(feed_url):
     """download feed xml from url"""
     # get feed xml from url
-    feed_xml = urllib.urlopen(feed_url)
+    try:
+        feed_xml = urllib.urlopen(feed_url)
+        # open local file
+        filename = get_hashed_filename(feed_url)
+        feed_fd = open(DATA_DIR + '/cache/rss/' + filename + '.xml', 'w')    
 
-    # open local file
-    filename = get_hashed_filename(feed_url)
-    feed_fd = open(DATA_DIR + '/cache/rss/' + filename + '.xml', 'w')    
-
-    # download feed xml
-    feed_fd.write(feed_xml.read())
+        # download feed xml
+        feed_fd.write(feed_xml.read())
+        feed_xml.close()
+        feed_fd.close()
+    except IOError:
+        return -1
     
 @app.route('/xhr/rss_reader/')
 @requires_auth
@@ -64,34 +68,40 @@ def xhr_rss_reader():
     if feed_fetch_interval == '' or feed_fetch_interval == None:
         feed_fetch_interval = 5
 
-    # check if the feed should be downloaded (is to old)
-    download_feed = True
-    try:
-        # build file name/path
-        filename = get_hashed_filename(feed_url)
-        # TODO: use os.sep
-        xml_path = DATA_DIR + '/cache/rss/' + filename + '.xml'
-        # get last modified time
-        last_feed_download = os.path.getmtime(xml_path)
-        now = time.time()
-        # check if calculated time is below interval
-        if (now - last_feed_download) < (feed_fetch_interval * 60):
-            download_feed = False
-    except OSError:
-        pass
-    except IOError:
-        pass
-
     # if a valid feed url is present
-    if feed_url != None and feed_url != '':
+    try:
+        if feed_url == None or feed_url == '':
+            raise ValueError
+        # check if the feed should be downloaded (is to old)
+        download_feed = True
+        try:
+            # build file name/path
+            filename = get_hashed_filename(feed_url)
+            # TODO: use os.sep
+            xml_path = DATA_DIR + '/cache/rss/' + filename + '.xml'
+            # get last modified time
+            last_feed_download = os.path.getmtime(xml_path)
+            now = time.time()
+            # check if calculated time is below interval
+            if (now - last_feed_download) < (feed_fetch_interval * 60):
+                download_feed = False
+        except OSError:
+            pass
+        except IOError:
+            pass
+
         if download_feed == True:
             # download and store feed locally
-            download_and_store_feed(feed_url)
+            ret = download_and_store_feed(feed_url)
+            if ret == -1:
+                raise ValueError
         # load feed from local cache
         feed = load_cached_feed(feed_url)
-    else:
+    except ValueError:
         logger.log('Please specify a valid rss feed address.', 'WARNING')
-        return render_template('rss_reader.html')
+        return render_template('rss_reader.html',
+            valid_feed = False
+        )
 
     # get current feed index for rotation
     index = 0
@@ -126,6 +136,7 @@ def xhr_rss_reader():
 
     # render the template...
     return render_template('rss_reader.html',
+        valid_feed = True,
         feedtitle = feedtitle,
         feeditems = filtered_feeds
     )
