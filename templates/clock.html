@@ -1,25 +1,33 @@
-<div id="clock" class="module" data-module="clock">
+{% if clock_show_date or clock_show_time %}
+  <div id="clock" class="module" data-module="clock">
 
   <div class="module_settings"><span>Settings</span></div>
   <div class="module_remove"><span>Remove</span></div>
 
-{% if clock_show_date %}
-  <div class="part_header"><span>Today is</span></div>
+  {% if clock_show_date %}
+    <div class="part_header"><span>Today is</span></div>
 
-  <div class="date"><span>{{ date }}</span></div>
-{% endif %}
+    <div class="date"><span>{{ date }}</span></div>
+  {% endif %}
 
-{% if clock_show_time %}
-  <div class="part_header"><span>Current Time</span></div>
+  {% if clock_show_time %}
+    <div class="part_header"><span>Current Time</span></div>
 
-  <div class="time">
-    <span class="{% if clock_meridian %}12{% endif %}hours"></span>
-    <span>:</span>
-    <span class="min"></span>
-    <span>:</span>
-    <span class="sec"></span>
-    <span class="meridian"></span>
+    <div class="time">
+      <span class="{% if clock_meridian %}12{% endif %}hours"></span>
+      <span>:</span>
+      <span class="min"></span>
+      <span>:</span>
+      <span class="sec"></span>
+      <span class="meridian"></span>
+    </div>
+  {% endif %}
+
+  </div>
+{% else %}
+  <div class="placeholder" data-module="clock">
+    <div class="module_settings"><span>Settings</span></div>
+    <div class="module_remove"><span>Remove</span></div>
+    <h2>Clock</h2>
   </div>
 {% endif %}
-
-</div>
