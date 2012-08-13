@@ -210,6 +210,21 @@ AVAILABLE_MODULES = [
         ]
     },
     {
+        'name': 'logfile_viewer',
+        'label': 'Logfile Viewer',
+        'description': 'View recent changes in a logfile.',
+        'static': False,
+        'poll': 30,
+        'delay': 0,
+        'settings': [
+            {
+                'key': 'logfile_path',
+                'value': '',
+                'description': 'Path to logfile',
+            }
+        ]
+    },
+    {
         'name': 'pic_frame',
         'label': 'Picture Frame',
         'description': 'Picture Frame.',

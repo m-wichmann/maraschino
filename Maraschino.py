@@ -36,6 +36,7 @@ def import_modules():
     import modules.index
     import modules.library
     import modules.log
+    import modules.logfile_viewer
     import modules.nzbget
     import modules.pic_frame
     import modules.recently_added
