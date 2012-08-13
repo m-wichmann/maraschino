@@ -395,12 +395,12 @@ AVAILABLE_MODULES = [
         'label': 'RSS Feed Reader',
         'description': 'Display your recent feeds in Maraschino.',
         'static': False,
-        'poll': 350,
+        'poll': 30,
         'delay': 0,
         'settings': [
             {
                 'key': 'feed_url',
-                'value': '',
+                'value': 'http://xbmc.org/feed/',
                 'description': 'Feed URL',
             },
             {

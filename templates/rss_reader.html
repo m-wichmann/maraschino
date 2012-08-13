@@ -3,10 +3,12 @@
   <div class="module_settings"><span>Settings</span></div>
   <div class="module_remove"><span>Remove</span></div>
 
+  <div class="rss_reader_feed_title"><span>{{ feedtitle }}</span></div>
+
   <table>
     {% for item in feeditems %}
     <tr>
-      <th><div class="rss_reader_feed_title"><span>{{ item['title'] }}</span></div></th>
+      <th><div class="rss_reader_feed_item_title"><span>{{ item['title'] }}</span></div></th>
       <th><div class="rss_reader_link_icon"><span>
         <a href="{{ item['link'] }}" target="_blank">Link</a>
       </span></div></th>

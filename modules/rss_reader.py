@@ -40,7 +40,7 @@ def download_and_store_feed(feed_url):
 
     filename = get_hashed_filename(feed_url)
     feed_fd = open(DATA_DIR + '/cache/rss/' + filename + '.json', 'w')
-    json.dump(feed, feed_fd)
+    json.dump(feed, feed_fd, indent=2)
 
 
 def convert_rss_dates_to_json(feed):
@@ -80,6 +80,8 @@ def xhr_rss_reader():
         now = time.time()
         if (now - last_feed_download) < (feed_fetch_interval * 60):
             download_feed = False
+    except OSError:
+        pass
     except IOError:
         pass
 
@@ -96,6 +98,8 @@ def xhr_rss_reader():
         index_fd = open(DATA_DIR + '/cache/rss/current_index', 'r')
         temp_index = index_fd.readline()
         index = int(temp_index)
+    except IOError:
+        pass
     except ValueError:
         pass
 
@@ -114,6 +118,9 @@ def xhr_rss_reader():
     except IOError:
         pass
 
+    feedtitle = "RSS Feed: " + feed["feed"]["title"]
+
     return render_template('rss_reader.html',
+        feedtitle = feedtitle,
         feeditems = filtered_feeds
     )
